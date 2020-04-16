@@ -1,5 +1,3 @@
-export {};
-
 interface BmiValues {
   height: number;
   weight: number;
@@ -19,7 +17,7 @@ const parseArgs = (args: Array<string>): BmiValues => {
   }
 };
 
-const calculateBmi = (height: number, weight: number): string => {
+export const calculateBmi = (height: number, weight: number): string => {
   const bmi = weight / Math.pow(height / 100, 2);
 
   if (bmi < 0)
@@ -36,9 +34,11 @@ const calculateBmi = (height: number, weight: number): string => {
   else return "Obese Class III (Very severely obese)";
 };
 
-try {
-  const { height, weight } = parseArgs(process.argv);
-  console.log(calculateBmi(height, weight));
-} catch (err) {
-  console.log("Error, something went wrong: ", err.message);
+if (require.main === module) {
+  try {
+    const { height, weight } = parseArgs(process.argv);
+    console.log(calculateBmi(height, weight));
+  } catch (err) {
+    console.log("Error, something went wrong: ", err.message);
+  }
 }
