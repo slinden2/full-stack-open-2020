@@ -33,7 +33,7 @@ interface ExerciseResult {
   average: number;
 }
 
-const calculateExercises = (
+export const calculateExercises = (
   exerciseArr: Array<number>,
   target: number
 ): ExerciseResult => {
@@ -55,9 +55,11 @@ const calculateExercises = (
   };
 };
 
-try {
-  const { target, exerHrs } = parseArgs(process.argv);
-  console.log(calculateExercises(exerHrs, target));
-} catch (err) {
-  console.log("Error, something went wrong: ", err.message);
+if (require.main === module) {
+  try {
+    const { target, exerHrs } = parseArgs(process.argv);
+    console.log(calculateExercises(exerHrs, target));
+  } catch (err) {
+    console.log("Error, something went wrong: ", err.message);
+  }
 }
