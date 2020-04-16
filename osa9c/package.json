@@ -1,0 +1,25 @@
+{
+  "name": "fso2020-osa9",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev server.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/server.js"
+  },
+  "author": "Samu Linden",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@typescript-eslint/eslint-plugin": "^2.28.0",
+    "@typescript-eslint/parser": "^2.28.0",
+    "eslint": "^6.8.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
