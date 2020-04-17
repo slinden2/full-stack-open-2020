@@ -1,8 +1,3 @@
-// export interface Part {
-//   name: string;
-//   exerciseCount: number;
-// }
-
 interface CoursePartBase {
   name: string;
   exerciseCount: number;
@@ -38,5 +33,5 @@ export type CoursePart =
   | CoursePartFour;
 
 export interface CourseParts {
-  courseParts: Array<CoursePart>;
+  courseParts: CoursePart[];
 }

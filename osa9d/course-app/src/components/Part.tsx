@@ -22,6 +22,13 @@ const Part: React.FC<CoursePart> = props => {
           {props.exerciseCount}
         </p>
       );
+    case "Lighter type style":
+      return (
+        <p>
+          {props.name} {props.description} {props.exerciseStyle}{" "}
+          {props.exerciseCount}
+        </p>
+      );
     default:
       break;
   }
