@@ -30,7 +30,7 @@ const Part: React.FC<CoursePart> = props => {
         </p>
       );
     default:
-      break;
+      return null;
   }
 };
 
