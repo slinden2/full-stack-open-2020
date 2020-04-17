@@ -1,7 +1,7 @@
 import React from "react";
-import { CourseParts, CoursePartsArray } from "../types";
+import { CourseParts, CoursePart } from "../types";
 
-const countTotal = (courseParts: CoursePartsArray): number => {
+const countTotal = (courseParts: Array<CoursePart>): number => {
   return courseParts.reduce((carry, part) => carry + part.exerciseCount, 0);
 };
 
