@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateValue } from "../state";
+import { useStateValue, updatePatient } from "../state";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
@@ -15,8 +15,7 @@ const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
         const { data: patientFromApi } = await axios.get<Patient>(
           `${apiBaseUrl}/patients/${id}`
         );
-        console.log(patientFromApi);
-        dispatch({ type: "UPDATE_PATIENT", payload: patientFromApi });
+        dispatch(updatePatient(patientFromApi));
       } catch (err) {
         console.error(err);
       }
