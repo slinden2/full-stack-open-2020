@@ -13,7 +13,22 @@ const getPublicPatients = (): Array<PublicPatient> => {
     dateOfBirth: patient.dateOfBirth,
     gender: patient.gender,
     occupation: patient.occupation,
+    entries: [],
   }));
+};
+
+const getPatient = (id: string): Patient | undefined => {
+  const patient = patientData.find(p => p.id === id);
+
+  if (!patient) {
+    throw new Error("patient not found!");
+  }
+
+  if (!patient.entries) {
+    patient.entries = [];
+  }
+
+  return patient;
 };
 
 const addPatient = (entry: NewPatient): Patient => {
@@ -22,4 +37,4 @@ const addPatient = (entry: NewPatient): Patient => {
   return newPatient;
 };
 
-export default { getPatients, getPublicPatients, addPatient };
+export default { getPatients, getPublicPatients, getPatient, addPatient };
