@@ -13,7 +13,7 @@ const getPublicPatients = (): Array<PublicPatient> => {
     dateOfBirth: patient.dateOfBirth,
     gender: patient.gender,
     occupation: patient.occupation,
-    entries: [],
+    entries: patient.entries,
   }));
 };
 
