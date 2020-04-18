@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorMessage, Field, FieldProps, FormikProps } from "formik";
 import { Dropdown, DropdownProps, Form } from "semantic-ui-react";
-import { Diagnosis, Gender } from "../types";
+import { Diagnose, Gender } from "../types";
 
 // structure of a single option
 export type GenderOption = {
@@ -19,7 +19,7 @@ type SelectFieldProps = {
 export const SelectField: React.FC<SelectFieldProps> = ({
   name,
   label,
-  options
+  options,
 }: SelectFieldProps) => (
   <Form.Field>
     <label>{label}</label>
@@ -41,12 +41,12 @@ interface TextProps extends FieldProps {
 export const TextField: React.FC<TextProps> = ({
   field,
   label,
-  placeholder
+  placeholder,
 }) => (
   <Form.Field>
     <label>{label}</label>
     <Field placeholder={placeholder} {...field} />
-    <div style={{ color:'red' }}>
+    <div style={{ color: "red" }}>
       <ErrorMessage name={field.name} />
     </div>
   </Form.Field>
@@ -62,12 +62,17 @@ interface NumberProps extends FieldProps {
   max: number;
 }
 
-export const NumberField: React.FC<NumberProps> = ({ field, label, min, max }) => (
+export const NumberField: React.FC<NumberProps> = ({
+  field,
+  label,
+  min,
+  max,
+}) => (
   <Form.Field>
     <label>{label}</label>
-    <Field {...field} type='number' min={min} max={max} />
+    <Field {...field} type="number" min={min} max={max} />
 
-    <div style={{ color:'red' }}>
+    <div style={{ color: "red" }}>
       <ErrorMessage name={field.name} />
     </div>
   </Form.Field>
@@ -76,9 +81,9 @@ export const NumberField: React.FC<NumberProps> = ({ field, label, min, max }) =
 export const DiagnosisSelection = ({
   diagnoses,
   setFieldValue,
-  setFieldTouched
+  setFieldTouched,
 }: {
-  diagnoses: Diagnosis[];
+  diagnoses: Diagnose[];
   setFieldValue: FormikProps<{ diagnosisCodes: string[] }>["setFieldValue"];
   setFieldTouched: FormikProps<{ diagnosisCodes: string[] }>["setFieldTouched"];
 }) => {
@@ -94,7 +99,7 @@ export const DiagnosisSelection = ({
   const stateOptions = diagnoses.map(diagnosis => ({
     key: diagnosis.code,
     text: `${diagnosis.name} (${diagnosis.code})`,
-    value: diagnosis.code
+    value: diagnosis.code,
   }));
 
   return (

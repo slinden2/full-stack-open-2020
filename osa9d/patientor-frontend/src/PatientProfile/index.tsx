@@ -4,6 +4,7 @@ import axios from "axios";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
 import { Header, Icon } from "semantic-ui-react";
+import Entries from "./Entries";
 
 const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
   const [{ patients }, dispatch] = useStateValue();
@@ -43,6 +44,7 @@ const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
       </div>
       <p>ssn: {`${patient.ssn}`}</p>
       <p>occupation: {`${patient.occupation}`}</p>
+      <Entries data={patient.entries} />
     </div>
   );
 };
