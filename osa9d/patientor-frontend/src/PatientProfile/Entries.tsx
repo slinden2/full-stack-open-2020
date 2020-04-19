@@ -12,7 +12,7 @@ const Entries: React.FC<Props> = ({ data }) => {
     <div>
       <Header size="small">Entries</Header>
       {data.map(entry => (
-        <EntryComponent key={entry.id} data={entry} />
+        <EntryComponent key={entry.id} entry={entry} />
       ))}
     </div>
   );
