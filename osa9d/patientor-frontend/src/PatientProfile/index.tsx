@@ -1,10 +1,11 @@
 import React from "react";
-import { useStateValue, updatePatient } from "../state";
+import { useStateValue, updatePatient, addEntry } from "../state";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
-import { Patient } from "../types";
+import { Patient, HealthCheckEntryType } from "../types";
 import { Header, Icon } from "semantic-ui-react";
 import Entries from "./Entries";
+import AddEntryForm, { EntryFormValues } from "./AddEntryForm";
 
 const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
   const [{ patients }, dispatch] = useStateValue();
@@ -29,6 +30,18 @@ const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
 
   if (!patient) return null;
 
+  const submitNewEntry = async (values: EntryFormValues) => {
+    try {
+      const { data: newEntry } = await axios.post<HealthCheckEntryType>(
+        `${apiBaseUrl}/patients/${id}/entries`,
+        values
+      );
+      dispatch(addEntry(id, newEntry));
+    } catch (e) {
+      console.error(e.response.data);
+    }
+  };
+
   const iconName =
     patient.gender === "male"
       ? "mars"
@@ -45,6 +58,8 @@ const PatientProfile: React.FC<{ id: string }> = ({ id }) => {
       <p>ssn: {`${patient.ssn}`}</p>
       <p>occupation: {`${patient.occupation}`}</p>
       <Entries data={patient.entries} />
+      <Header size="small">Add an entry</Header>
+      <AddEntryForm onSubmit={submitNewEntry} />
     </div>
   );
 };
